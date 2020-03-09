@@ -58,8 +58,8 @@ class HashTable:
         if not linked_list:
             self.storage[hashed_key] = LinkedPair(key, value)
             self.items += 1
-            # if self.items / self.capacity > 0.7:
-            #     self.resize()
+            if self.items / self.capacity > 0.7:
+                self.resize()
 
         else:
             while linked_list.next and linked_list.key != key:
@@ -71,8 +71,8 @@ class HashTable:
                 linked_list.next = LinkedPair(key, value)
 
                 self.items += 1
-                # if self.items / self.capacity > 0.7:
-                #     self.resize()
+                if self.items / self.capacity > 0.7:
+                    self.resize()
 
 
     def remove(self, key: str):
@@ -88,8 +88,8 @@ class HashTable:
         if trailing_node and trailing_node.key == key:
             self.storage[hashed_key] = trailing_node.next
             self.items -= 1
-            # if self.items / self.capacity > 0.7:
-            #     self.resize(up=False)
+            if self.items / self.capacity < 0.2:
+                self.resize(up=False)
             return
 
         while leading_node and leading_node.next and leading_node.key != key:
@@ -99,8 +99,8 @@ class HashTable:
         if leading_node and leading_node.key == key:
             trailing_node.next = leading_node.next if leading_node else None
             self.items -= 1
-            # if self.items / self.capacity > 0.7:
-            #     self.resize(up=False)
+            if self.items / self.capacity < 0.2:
+                self.resize(up=False)
             return
 
         print("Value not found...")
