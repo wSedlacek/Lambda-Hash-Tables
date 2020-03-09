@@ -167,7 +167,7 @@ class TestHashTable(unittest.TestCase):
         ht.insert("key-8", "val-8")
         ht.insert("key-9", "val-9")
 
-        self.assertTrue(len(ht.storage) == 32)
+        self.assertTrue(len(ht.storage) == 16)
 
         return_value = ht.retrieve("key-0")
         self.assertTrue(return_value == "val-0")
@@ -189,6 +189,19 @@ class TestHashTable(unittest.TestCase):
         self.assertTrue(return_value == "val-8")
         return_value = ht.retrieve("key-9")
         self.assertTrue(return_value == "val-9")
+
+        ht.remove("key-0")
+        ht.remove("key-1")
+        ht.remove("key-2")
+        ht.remove("key-3")
+        ht.remove("key-4")
+        ht.remove("key-5")
+        ht.remove("key-6")
+        ht.remove("key-7")
+        ht.remove("key-8")
+        ht.remove("key-9")
+
+        self.assertTrue(len(ht.storage) == 8)
 
 
 if __name__ == '__main__':
